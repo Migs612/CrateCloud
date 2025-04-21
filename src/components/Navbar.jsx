@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FiSearch, FiGlobe, FiMenu, FiX, FiPlusCircle } from 'react-icons/fi';
 
 const Navbar = () => {
@@ -10,15 +11,21 @@ const Navbar = () => {
       {/* Vista escritorio */}
       <div className="hidden lg:grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_auto_auto] grid-rows-[auto_auto]">
         {/* LOGO */}
-        <div className="row-span-2 flex items-center justify-center border-r-2 border-white">
-          <div className="flex items-center space-x-3 text-2xl font-bold">
+        <Link to="/" className="row-span-2 flex items-center justify-center border-r-2 border-white">
+          <div className="flex items-center space-x-3 text-2xl font-bold cursor-pointer">
             <div className="w-8 h-8 bg-gradient-to-tr from-purple-400 to-pink-500 rounded-full" />
             <span>CrateCloud</span>
           </div>
-        </div>
+        </Link>
 
         {/* MENÚ PRINCIPAL */}
-        {['$USUARIO', 'ALBUMES', 'TOP MÚSICA', 'AMIGOS'].map((item, index) => (
+        <Link
+          to="/usuario"
+          className="flex items-center justify-center text-sm font-semibold border-r-2 border-b-2 border-white hover:bg-white/10 cursor-pointer"
+        >
+          USUARIO
+        </Link>
+        {['ALBUMES', 'TOP MÚSICA', 'AMIGOS'].map((item, index) => (
           <div
             key={index}
             className="flex items-center justify-center text-sm font-semibold border-r-2 border-b-2 border-white hover:bg-white/10 cursor-pointer"
@@ -64,10 +71,10 @@ const Navbar = () => {
 
       {/* Vista móvil */}
       <div className="lg:hidden flex justify-between items-center p-4 bg-transparent border-t-2 border-white">
-        <div className="flex items-center space-x-2 text-xl font-bold">
+        <Link to="/" className="flex items-center space-x-2 text-xl font-bold">
           <div className="w-6 h-6 bg-gradient-to-tr from-purple-400 to-pink-500 rounded-full" />
           <span>CrateCloud</span>
-        </div>
+        </Link>
         <button onClick={() => setMenuAbierto(!menuAbierto)}>
           {menuAbierto ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
@@ -75,7 +82,10 @@ const Navbar = () => {
 
       {menuAbierto && (
         <div className="lg:hidden bg-transparent text-sm font-medium border-t-2 border-white">
-          {['$USUARIO', 'ALBUMES', 'TOP MÚSICA', 'AMIGOS'].map((item, index) => (
+          <Link to="/usuario" className="block px-4 py-3 border-b border-white">
+            USUARIO
+          </Link>
+          {['ALBUMES', 'TOP MÚSICA', 'AMIGOS'].map((item, index) => (
             <div key={index} className="px-4 py-3 border-b border-white">{item}</div>
           ))}
           <div className="px-4 py-3 border-b border-white flex items-center space-x-2">
