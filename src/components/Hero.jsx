@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero = () => {
   return (
-    <section className="flex flex-col items-start justify-center px-8 py-24 md:px-24 lg:px-32 xl:px-48 text-white">
+    <section className="flex flex-col items-start justify-center px-0 md:px-4 lg:px-8 xl:px-12 py-8 text-white">
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
         Explora la <span className="text-purple-400">música</span> que<br />
         define tu <span className="text-purple-300">identidad musical</span>

@@ -8,9 +8,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-[80%] mx-auto mt-6 text-white border-2 border-white">
-      {/* Vista escritorio */}
       <div className="hidden lg:grid grid-cols-[1.5fr_1fr_1fr_1fr_1fr_auto_auto] grid-rows-[auto_auto]">
-        {/* LOGO */}
         <Link to="/" className="row-span-2 flex items-center justify-center border-r-2 border-white">
           <div className="flex items-center space-x-3 text-2xl font-bold cursor-pointer">
             <div className="w-8 h-8 bg-gradient-to-tr from-purple-400 to-pink-500 rounded-full" />
@@ -18,7 +16,6 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* MENÚ PRINCIPAL */}
         <Link
           to="/usuario"
           className="flex items-center justify-center text-sm font-semibold border-r-2 border-b-2 border-white hover:bg-white/10 cursor-pointer"
@@ -34,12 +31,10 @@ const Navbar = () => {
           </div>
         ))}
 
-        {/* GLOBO */}
         <div className="flex items-center justify-center w-12 h-12 border-b-2 border-white">
           <FiGlobe size={20} />
         </div>
 
-        {/* BOTÓN CREAR */}
         <div className="col-span-2 flex items-center justify-center border-r-2 border-white bg-purple-500 hover:bg-purple-600 transition-all">
           <button className="flex items-center space-x-2 font-semibold text-white text-sm px-4 py-2 focus:outline-none">
             <FiPlusCircle />
@@ -47,7 +42,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* INPUT BUSCAR */}
         <div className="col-span-2 flex items-center border-r-2 border-white px-4">
           {mostrarBusqueda && (
             <div className="w-full border-b-2 border-white">
@@ -60,7 +54,6 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* LUPA */}
         <div
           className="flex items-center justify-center w-12 h-12 cursor-pointer hover:bg-white/10"
           onClick={() => setMostrarBusqueda(!mostrarBusqueda)}

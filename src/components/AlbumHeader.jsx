@@ -59,7 +59,6 @@ const AlbumHeader = ({ album, duracionMin }) => {
             </div>
           </div>
 
-          {/* Descripción más pegada y alineada */}
           <div className="text-sm text-gray-200 self-center md:pt-2 max-w-[500px]">
             <p>
               Este álbum es una obra representativa de su género, con un enfoque artístico único. 

@@ -1,46 +1,82 @@
-// src/components/PerfilHeader.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AlbumesFavoritos from './AlbumesFavoritos';
+import Estadisticas from './Estadisticas';
+import useLastFmAPI from '../hooks/useLastFmAPI';
 
-const PerfilHeader = () => (
-  <div className="bg-purple-800 p-6 rounded-lg w-[80%] mx-auto mt-16 relative">
-    {/* Foto de perfil ajustada */}
-    <div className="absolute top-[-60px] left-1/2 transform -translate-x-1/2">
-      <div className="w-32 h-32 rounded-full bg-gray-500 mb-4"></div> {/* Imagen de perfil centrada y elevada */}
+const PerfilHeader = () => {
+  const [username] = useState('Hadesito');
+  const [userImage, setUserImage] = useState('');
+  const callLastFm = useLastFmAPI();
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await callLastFm('user.getInfo', { user: username });
+        if (data?.user?.image) {
+          const imageUrl = data.user.image[data.user.image.length - 1]['#text'];
+          setUserImage(imageUrl);
+        }
+      } catch (error) {
+        console.error('Error al obtener los datos del usuario:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [username, callLastFm]);
+
+  return (
+    <div className="relative w-[80%] mx-auto mt-12">
+      {/* Imagen y nombre solo en desktop */}
+      <div className="hidden lg:flex items-center space-x-4 mb-0 relative z-10 ml-6">
+        <div
+          className="w-48 h-48 rounded-full shadow-xl"
+          style={{
+            backgroundImage: `url(${userImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
+          }}
+        ></div>
+
+        <div className="text-white -mt-13">
+          <div className="text-3xl font-semibold">{username}</div>
+          <div className="text-sm text-white/70">Est. 28 Feb, 2022</div>
+        </div>
+      </div>
+
+      {/* Recuadro principal (ajustado solo padding superior en móvil) */}
+      <div className="bg-white/10 border border-white/20 p-6 rounded-lg mt-10 lg:mt-[-4rem] pt-36 lg:pt-28 relative z-0">
+        {/* Imagen centrada en mobile */}
+        <div className="lg:hidden flex justify-center relative">
+          <div
+            className="w-32 h-32 sm:w-36 sm:h-36 rounded-full shadow-xl absolute -top-20"
+            style={{
+              backgroundImage: `url(${userImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              boxShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
+            }}
+          ></div>
+        </div>
+
+        {/* Nombre en mobile */}
+        <div className="lg:hidden text-white text-center mt-16">
+          <div className="text-2xl font-semibold">{username}</div>
+          <div className="text-sm text-white/70">Est. 28 Feb, 2022</div>
+        </div>
+
+        {/* Estadísticas: alineadas en desktop, centradas en mobile */}
+        <div className="lg:ml-[13rem] mt-6 lg:mt-[-6rem] flex justify-center lg:justify-start">
+          <Estadisticas />
+        </div>
+
+        {/* Álbumes favoritos */}
+        <div className="mt-8 flex flex-col items-center">
+          <AlbumesFavoritos />
+        </div>
+      </div>
     </div>
-
-    {/* Información del usuario */}
-    <div className="flex flex-col items-center space-y-2 mt-24">
-      <div className="text-2xl font-semibold text-white">Pedritocamela</div>
-      <div className="text-sm text-white/70">Est. 28 Feb. 2022</div>
-    </div>
-
-    {/* Estadísticas: Más pequeñas y justo debajo del nombre */}
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 text-center text-sm text-white">
-      <div className="p-2">
-        <div className="text-xl font-bold">55 394</div>
-        <div>Spins</div>
-      </div>
-      <div className="p-2">
-        <div className="text-xl font-bold">3 991</div>
-        <div>Artistas</div>
-      </div>
-      <div className="p-2">
-        <div className="text-xl font-bold">11</div>
-        <div>Seguidores</div>
-      </div>
-      <div className="p-2">
-        <div className="text-xl font-bold">6</div>
-        <div>Favoritos</div>
-      </div>
-    </div>
-
-    {/* Título de álbumes favoritos debajo de las imágenes */}
-    <h2 className="text-lg font-semibold text-white mt-8 text-center">Álbumes favoritos</h2>
-
-    {/* Álbumes favoritos */}
-    <AlbumesFavoritos />
-  </div>
-);
+  );
+};
 
 export default PerfilHeader;

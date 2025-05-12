@@ -1,4 +1,3 @@
-// src/components/Estadisticas.jsx
 import React from 'react';
 
 const Estadisticas = () => {
@@ -10,11 +9,11 @@ const Estadisticas = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-sm text-white">
+    <div className="grid grid-cols-2 gap-6 text-white text-sm sm:flex sm:flex-row sm:gap-10 sm:text-base">
       {data.map((item, i) => (
-        <div key={i} className="bg-white/10 p-4 rounded-lg">
-          <div className="text-xl font-bold">{item.value}</div>
-          <div>{item.label}</div>
+        <div key={i} className="flex flex-col items-center">
+          <div className="text-base font-semibold tracking-wide">{item.label}</div>
+          <div className="text-sm opacity-70">{item.value}</div>
         </div>
       ))}
     </div>

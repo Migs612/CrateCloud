@@ -10,7 +10,7 @@ const Home = () => {
     <div className="bg-gradient-to-br from-black via-purple-900 to-black text-white min-h-screen overflow-x-hidden">
       <Navbar />
 
-      <section className="flex flex-col md:flex-row items-center justify-between px-8 md:px-24 py-16">
+      <section className="flex flex-col md:flex-row items-center justify-center gap-0 px-8 md:px-24 py-16">
         <div className="w-full md:w-1/2 relative h-[400px]">
           <Carrusel />
         </div>

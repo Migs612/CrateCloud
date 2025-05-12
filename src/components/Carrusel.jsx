@@ -41,7 +41,7 @@ const Carrusel = () => {
         return (
           <div
             key={album.id}
-            className={`w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 
+            className={`w-20 h-20 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-xl overflow-hidden shadow-xl transform transition-all duration-300 
             ${estiloExtra} hover:scale-[1.2] hover:z-50 relative z-0`}
           >
             {imagen ? (
