@@ -7,8 +7,11 @@ const BASE_URL = 'https://ws.audioscrobbler.com/2.0/';
 
 const useLastFmAPI = () => {
   const callLastFm = useCallback(async (method, params = {}, authToken = null) => {
-    if (!params.user) {
-      console.error('Error: El nombre de usuario de Last.fm no está definido.');
+    // Solo validar si el método lo requiere
+    const methodsThatRequireUser = ['user.gettopalbums', 'user.getrecenttracks', 'user.getinfo'];
+
+    if (methodsThatRequireUser.includes(method) && !params.user) {
+      console.error(`Error: El método "${method}" requiere el nombre de usuario de Last.fm.`);
       return;
     }
 

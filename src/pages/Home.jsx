@@ -1,28 +1,46 @@
+// src/pages/Home.jsx
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import Carrusel from '../components/Carrusel';
-import UsuariosCompatibles from '../components/UsuariosCompatibles';
-import Footer from '../components/Footer';
+import Navbar from '../components/Global/Navbar';
+import Hero from '../components/Home/Hero';
+import Carrusel from '../components/Home/Carrusel';
+import PopularAlbumsSection from '../components/Home/PopularAlbumsSection';
+import FeaturesSection from '../components/Home/FeaturesSection';
+import ChartCreatorSection from '../components/Home/ChartCreatorSection';
+import CTASection from '../components/Home/CTASection';
+import Footer from '../components/Global/Footer';
 
 const Home = () => {
   return (
-    <div className="bg-gradient-to-br from-black via-purple-900 to-black text-white min-h-screen overflow-x-hidden">
-      <Navbar />
+    <div className="relative min-h-screen text-white overflow-x-hidden">
+      <div
+        className="fixed inset-0 -z-10 transition-all duration-1000"
+        style={{
+          backgroundImage: 'var(--background-dynamic)',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '300% 300%',
+          backgroundAttachment: 'fixed',
+          animation: 'fondo-move 10s ease-in-out infinite, fondo-pulso 12s ease-in-out infinite'
+        }}
+      />
 
-      <section className="flex flex-col md:flex-row items-center justify-center gap-0 px-8 md:px-24 py-16">
-        <div className="w-full md:w-1/2 relative h-[400px]">
-          <Carrusel />
-        </div>
-        <div className="w-full md:w-1/2">
-          <Hero />
-        </div>
-      </section>
-
-      <div className="px-8 md:px-24 py-12">
-        <UsuariosCompatibles />
-      </div>
+      <div className="relative z-10">
+        <Navbar />
+        <section className="relative">
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-24 py-16">
+            <div className="w-full md:w-1/2">
+              <Carrusel />
+            </div>
+            <div className="w-full md:w-1/2">
+              <Hero />
+            </div>
+          </div>
+        </section>
+        <PopularAlbumsSection />
+        <FeaturesSection />
+        <ChartCreatorSection />
+        <CTASection />
         <Footer />
+      </div>
     </div>
   );
 };

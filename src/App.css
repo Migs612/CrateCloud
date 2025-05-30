@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;     /* Firefox */
+}
